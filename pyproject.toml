@@ -6,9 +6,8 @@ authors = ["sina <khalili@sfu.ca>"]
 license = "MIT"
 keywords = ["vt100", "terminal", "escape", "codes"]
 
-# TODO: add page and repo
-homepage = "" 
-repository = ""
+homepage = "https://github.com/SinaKhalili/pvt100" 
+repository = "https://github.com/SinaKhalili/pvt100"
 
 classifiers = [
     "Development Status :: 3 - Alpha",

@@ -16,6 +16,12 @@ import pvt100
 print(f"{pvt100.color_bg_blue} Hello, world! {pvt100.style_reset}")
 ```
 
+## Installation
+
+```bash
+pip install pvt100
+```
+
 
 See also:
 - https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
