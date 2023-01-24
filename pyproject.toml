@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pvt100"
-version = "0.1.2"
+version = "0.1.3"
 description = "VT100 terminal escape codes for Python"
 authors = ["sina <khalili@sfu.ca>"]
 license = "MIT"

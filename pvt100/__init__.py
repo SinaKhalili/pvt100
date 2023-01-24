@@ -39,6 +39,13 @@ screen_disable_256_colors = f"{CSI}?19l"
 cursor_set_visible = f"{CSI}?25h"
 cursor_set_invisible = f"{CSI}?25l"
 
+mouse_set_click_tracking = f"{CSI}?1000h"
+mouse_unset_click_tracking = f"{CSI}?1000l"
+
+mouse_set_any_event_tracking = f"{CSI}?1003h"
+mouse_unset_any_event_tracking = f"{CSI}?1003l"
+
+
 # https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#cursor-controls
 def cursor_move_to(line, column):
     """
