@@ -3,7 +3,9 @@ import time
 import pvt100
 
 if __name__ == "__main__":
-    print(f"{pvt100.color_bg_blue} Hello, world! {pvt100.style_reset}")
+    print(
+        f"{pvt100.color_bg_blue} Hello, world! {pvt100.color_bg_white} {pvt100.style_reset}"
+    )
 
     print(
         f"{pvt100.style_bold} Behold! {pvt100.style_reset} {pvt100.color_bg_red} The bold text! {pvt100.style_reset}"
