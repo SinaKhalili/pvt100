@@ -16,10 +16,7 @@ misleading, as ANSI is a standards body, and these are not all standards.
 See also:
 - https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 - https://bluesock.org/~willg/dev/ansi.html#ansicodes
-
-For fun:
-- https://xn--rpa.cc/irl/term.html
-- https://github.com/jart/cosmopolitan/blob/master/tool/build/lib/pty.c
+- https://en.wikipedia.org/wiki/ANSI_escape_code
 """
 
 from typing import Tuple
@@ -49,35 +46,35 @@ mouse_unset_any_event_tracking = f"{CSI}?1003l"
 
 
 # https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#cursor-controls
-def cursor_move_to(line, column):
+def cursor_move_to(line: int, column: int) -> str:
     """
     Move the cursor to the specified line and column
     """
     return f"{CSI}{line};{column}H"
 
 
-def cursor_move_up(count):
+def cursor_move_up(count: int) -> str:
     """
     Move the cursor up `count` lines
     """
     return f"{CSI}{count}A"
 
 
-def cursor_move_down(count):
+def cursor_move_down(count: int) -> str:
     """
     Move the cursor down `count` lines
     """
     return f"{CSI}{count}B"
 
 
-def cursor_move_forward(count):
+def cursor_move_forward(count: int) -> str:
     """
     Move the cursor forward `count` columns
     """
     return f"{CSI}{count}C"
 
 
-def cursor_move_backward(count):
+def cursor_move_backward(count: int) -> str:
     """
     Move the cursor backward `count` columns
     """
@@ -152,7 +149,7 @@ color_bg_bright_cyan = f"{CSI}106m"
 color_bg_bright_white = f"{CSI}107m"
 
 
-def color_256(fg_color: int = None, bg_color: int = None):
+def color_256(fg_color: int | None = None, bg_color: int | None = None) -> str:
     """
     Set the foreground and background colors to the specified 256-color values.
     Resets style if both are None.
@@ -167,16 +164,17 @@ def color_256(fg_color: int = None, bg_color: int = None):
 
 
 def color_rgb(
-    fg_color: Tuple[int, int, int] = None, bg_color: Tuple[int, int, int] = None
-):
+    fg_color: Tuple[int, int, int] | None = None,
+    bg_color: Tuple[int, int, int] | None = None,
+) -> str:
     """
     Set the foreground and background colors to the specified RGB values.
     Resets style if both are None.
     """
-    if fg_color is None and bg_color is None:
-        return style_reset
-    if fg_color is None:
+    if fg_color is None and bg_color is not None:
         return f"{CSI}48;2;{bg_color[0]};{bg_color[1]};{bg_color[2]}m"
-    if bg_color is None:
+    if fg_color is not None and bg_color is None:
         return f"{CSI}38;2;{fg_color[0]};{fg_color[1]};{fg_color[2]}m"
-    return f"{CSI}38;2;{fg_color[0]};{fg_color[1]};{fg_color[2]};48;2;{bg_color[0]};{bg_color[1]};{bg_color[2]}m"
+    if fg_color is not None and bg_color is not None:
+        return f"{CSI}38;2;{fg_color[0]};{fg_color[1]};{fg_color[2]};48;2;{bg_color[0]};{bg_color[1]};{bg_color[2]}m"
+    return style_reset
