@@ -22,6 +22,8 @@ For fun:
 - https://github.com/jart/cosmopolitan/blob/master/tool/build/lib/pty.c
 """
 
+from typing import Tuple
+
 ESC = "\x1b"
 CSI = f"{ESC}["  # "Control Sequence Introducer"
 
@@ -162,3 +164,19 @@ def color_256(fg_color: int = None, bg_color: int = None):
     if bg_color is None:
         return f"{CSI}38;5;{fg_color}m"
     return f"{CSI}38;5;{fg_color};48;5;{bg_color}m"
+
+
+def color_rgb(
+    fg_color: Tuple[int, int, int] = None, bg_color: Tuple[int, int, int] = None
+):
+    """
+    Set the foreground and background colors to the specified RGB values.
+    Resets style if both are None.
+    """
+    if fg_color is None and bg_color is None:
+        return style_reset
+    if fg_color is None:
+        return f"{CSI}48;2;{bg_color[0]};{bg_color[1]};{bg_color[2]}m"
+    if bg_color is None:
+        return f"{CSI}38;2;{fg_color[0]};{fg_color[1]};{fg_color[2]}m"
+    return f"{CSI}38;2;{fg_color[0]};{fg_color[1]};{fg_color[2]};48;2;{bg_color[0]};{bg_color[1]};{bg_color[2]}m"

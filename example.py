@@ -34,3 +34,9 @@ if __name__ == "__main__":
         )
         time.sleep(0.2)
     print(f"{pvt100.cursor_set_visible}")
+
+    print(f"{pvt100.cursor_move_down(1)}", end="", flush=True)
+
+    print(
+        f"{pvt100.color_rgb((255, 0, 0), (0, 255, 0))} Hello, world! {pvt100.style_reset}"
+    )
